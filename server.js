@@ -23,7 +23,7 @@ app.set("layout", "./layouts/layout") //not
 /* ***********************
  * Routes
  *************************/
-app.use(require("./routes/static"))
+//app.use(require("./routes/static"))
 //Index route
 
 app.get("/", function (req, res) {
