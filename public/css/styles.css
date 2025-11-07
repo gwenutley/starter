@@ -5,6 +5,13 @@
   box-sizing: border-box;
 }
 
+/* Small screens (default) */
+body {
+  margin: 0;
+  background-color: white;
+  display: block;
+}
+
 /*header */
 #top-header {
   display: flex;
@@ -42,9 +49,12 @@ nav ul {
     display: flex;
     flex-direction: row;
     justify-content: space-around;
+    flex-wrap: wrap;
     margin:0;
     padding: 0;
     list-style: none;
+    font-size: 16px;
+
 }
 
 nav li {
