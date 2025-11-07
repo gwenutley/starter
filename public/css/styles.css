@@ -4,3 +4,236 @@
 *:after {
   box-sizing: border-box;
 }
+
+/*header */
+#top-header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+#top-header span,
+#top-header div {
+  margin: 20px 0;
+}
+
+#top-header span a{
+  font-size: 40px;
+  color: black;
+  text-decoration: none;
+
+}
+
+#top-header div a {
+  font-size: 16px;
+  text-align: right;
+  align-items: flex-end;
+  font-variant: small-caps ;
+  text-decoration: none;
+  color: black;
+}
+
+/*navigation*/
+nav {
+  background-color: black;
+}
+
+nav ul {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    margin:0;
+    padding: 0;
+    list-style: none;
+}
+
+nav li {
+  color: white;
+  padding: 15px 20px;
+  text-decoration: none;
+}
+
+
+
+/*dolorean image*/
+.container {
+  position: relative;
+  width: 100%;
+  max-width: 800px;
+  overflow: hidden;
+}
+
+.background {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+  display: block;
+}
+
+h2 {
+  font-size: 18px;
+  margin: 0;
+}
+
+.caption {
+  position: absolute;
+  top: 10px;
+  left: 5px;
+  background: rgba(250, 250, 250, 0.85);
+  color: rgb(103, 169, 190);
+  padding: 8px 10px;
+  font-size: 16px;
+  margin: 0;
+}
+
+.caption p {
+  margin: 5px 0;
+}
+
+.caption button {
+  background-color: rgb(103, 169, 190);
+  color: black;
+  border: none;
+  font-weight: bold;
+  padding: 10px 5px;
+  font-size: 16px;
+  margin: 0;
+}
+
+
+/*reviews section*/
+.reviews h3 {
+  font-size: 25px;
+
+}
+
+.reviews ul li {
+  font-size: 18px;
+  padding: .5rem;
+}
+
+
+
+/*upgrades section*/
+.upgrades {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap:5px;
+}
+
+.upgrade-section h3 {
+  font-size: 25px;
+}
+
+figure {
+  margin: 5px;
+}
+
+.square {
+  background-color: rgb(103, 169, 190);
+  border: 1px solid black;
+  width: 150px;
+  height: 100px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.upgrades img {
+  width: 85px;
+  height: 85px;
+}
+
+figcaption {
+  text-align: center;
+
+}
+
+figcaption a {
+  color: blue;
+  font-size: 20px;
+}
+
+/*footer*/
+footer p{
+  font-size: 16px;
+
+}
+
+.sections {
+  content: "";
+  display: block;
+  clear: both;
+}
+@media screen and (min-width: 500px) {
+  /*ckeckered background*/
+  body {
+    margin: 0;
+    background-image: url('/images/site/checkerboard.jpg');
+    background-repeat: repeat;
+    background-size: 400px 400px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  /*white background*/
+  #wrapper {
+    background-color: white;
+    padding: 2rem;
+    border-radius: 10px;
+    max-width: 850px;
+    width: 85%;
+    margin: 10px auto;
+    border: 6px solid rgb(103, 169, 190);
+  }
+
+  nav ul {
+    font-size: 20px;
+  }
+
+
+}
+
+
+
+@media screen and (min-width: 800px) {
+  /*layout change upgrades and reviews*/
+  .upgrade-section {
+    float: left;
+    width: 55%;
+  }
+
+  .reviews {
+    float: right;
+    width: 45%;
+  }
+
+  footer {
+    clear: both;
+    padding: 20px;
+
+  }
+
+  h2 {
+    font-size: 25px;
+  }
+  .caption {
+    position: absolute;
+    top: 30px;
+    left: 15px;
+    font-size: 20px;
+    padding: 20px;
+  }
+
+  .caption p {
+    margin: 15px 0;
+  }
+
+  .caption button {
+    font-size: 20px;
+  }
+}

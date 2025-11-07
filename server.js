@@ -11,6 +11,8 @@ const env = require("dotenv").config()
 const app = express()
 const static = require("./routes/static")
 
+//use public files statically
+app.use(express.static("public"));
 
 /* ***********************
  * View Engine and Templates
@@ -41,5 +43,6 @@ const host = process.env.HOST || "0.0.0.0"
  * Log statement to confirm server operation
  *************************/
 app.listen(port, host, () => {
-  console.log(`app listening on ${host}:${port}`)
+  const displayHost = host === "0.0.0.0" ? "localhost" : host
+  console.log(`app listening on ${displayHost}:${port}`)
 })
