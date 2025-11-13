@@ -289,8 +289,8 @@ WHERE inv_id = 10;
 
 --6. update all records in inventory to add /vehicles to the file paths
 UPDATE public.inventory
-SET inv_image = REPLACE(inv_image, '/images/', '/images/vehicles'),
-    inv_thumbnail = REPLACE(inv_thumbnail, '/images/', '/images/vehicles');
+SET inv_image = REPLACE(inv_image, '/images/', '/images/vehicles/'),
+    inv_thumbnail = REPLACE(inv_thumbnail, '/images/', '/images/vehicles/');
 
 
 
