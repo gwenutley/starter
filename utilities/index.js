@@ -58,6 +58,28 @@ Util.buildClassificationGrid = async function(data){
   return grid
 }
 
+/* ****************************
+  *Build the vehicle views in html
+ **************************** */
+Util.buildVehicleDetail = function (vehicle) {
+  const price = new Intl.NumberFormat('en-US').format(vehicle.inv_price)
+  const miles = new Intl.NumberFormat('en-US').format(vehicle.inv_miles)
+  const page =
+      `<h1>${vehicle.inv_make} ${vehicle.inv_model} ${vehicle.inv_year}</h1>
+        <div class="vehicle-detail">
+          <img src="${vehicle.inv_image}" alt="Image of ${vehicle.inv_make} ${vehicle.inv_model}">
+          <div class="vehicle-info">
+            <p><strong>Price:</strong> $${price}</p>
+            <p><strong>Description:</strong> ${vehicle.inv_description}</p>
+            <p><strong>Color:</strong> ${vehicle.inv_color}</p>
+            <p><strong>Mileage:</strong> ${miles}</p>
+          </div>
+        </div>`
+  
+  return page
+}
+
+
 /* ****************************************
  * Middleware For Handling Errors
  * Wrap other function in this for 
