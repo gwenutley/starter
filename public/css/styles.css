@@ -46,23 +46,25 @@ nav {
 }
 
 nav ul {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-around;
-    flex-wrap: wrap;
-    margin:0;
-    padding: 0;
-    list-style: none;
-    font-size: 16px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  margin:0;
+  padding: 0;
+  list-style: none;
+  font-size: 16px;
 
 }
 
-nav li {
-  color: white;
+nav li{
   padding: 15px 20px;
+}
+
+nav li a {
+  color: white;
   text-decoration: none;
 }
-
 
 
 /*dolorean image*/
@@ -258,7 +260,65 @@ ul#inv-display li img{
 }
 
 
+/* form section */
+.form-container {
+  background-color: rgb(42, 152, 188);
+  padding: 20px;
+  border-radius: 2px;
+  width: 350px;
+  color: white;
+  text-align: left;
+  margin: 30px auto;
+}
 
+.account-form label {
+  color: black;
+  margin: 20px auto 10px auto;
+  font-size: 18px;
+}
+
+.account-form input {
+  width: 85%;
+  padding: 16px;
+  border: none;
+  margin-bottom: 18px;
+  font-size: 12px;
+  background: white;
+  color: black;
+}
+
+.account-form p {
+  color: black;
+
+}
+
+.account-form button {
+  width: auto;
+  padding: 12px;
+  background: white;
+  color: black;
+  border: 1px solid black;
+  font-size: 15px;
+  cursor: pointer;
+}
+
+.account-form button:hover {
+  background: #0b3a86;
+}
+
+.no-account {
+  margin-top: 15px;
+  color: black;
+}
+
+/*input pseudo classes for coreect info*/
+input:required:valid {
+  border-left: 5px solid green;
+}
+
+input:required:invalid {
+  border-left: 5px solid red;
+}
 
 
 @media screen and (min-width: 500px) {
