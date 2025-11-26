@@ -29,9 +29,9 @@ Util.getNav = async function (req, res, next) {
 * Build the classification view HTML
 * ************************************ */
 Util.buildClassificationGrid = async function(data){
-  let grid
+  let grid = "";
   if(data.length > 0){
-    grid = '<ul id="inv-display">'
+    grid = '<ul id="inv-display">';
     data.forEach(vehicle => { 
       grid += '<li>'
       grid +=  '<a href="../../inv/detail/'+ vehicle.inv_id 
@@ -53,7 +53,7 @@ Util.buildClassificationGrid = async function(data){
     })
     grid += '</ul>'
   } else { 
-    grid += '<p class="notice">Sorry, no matching vehicles could be found.</p>'
+    grid += '<p class="notice">Sorry, no matching vehicles could be found.</p>';
   }
   return grid
 }
@@ -78,6 +78,26 @@ Util.buildVehicleDetail = function (vehicle) {
   
   return page
 }
+
+/*************************
+ * Build the select dropdown for classification addition
+ *************************/
+Util.buildClassificationList = async function (classification_id = null) {
+  const data = await invModel.getClassifications();
+  let classificationList = `<select name="classification_id" id="classificationList" required>
+    <option value=''>Choose a Classification</option>`;
+
+  data.rows.forEach((row) => {
+    classificationList += `<option value="${row.classification_id}" ${
+      classification_id != null && row.classification_id == classification_id
+        ? "selected"
+        : ""
+    }>${row.classification_name}</option>`;
+  });
+
+  classificationList += "</select>";
+  return classificationList;
+};
 
 
 /* ****************************************

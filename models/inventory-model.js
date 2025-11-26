@@ -21,7 +21,8 @@ async function getInventoryByClassificationId(classification_id) {
     )
     return data.rows
   } catch (error) {
-    console.error("getclassificationsbyid error " + error)
+    console.error("getclassificationsbyid error: " + error)
+    throw error
   }
 }
 
@@ -39,8 +40,59 @@ async function getVehicleById(invID) {
     )
     return data.rows
   } catch (error) {
-    console.error("getvehiclebyid error" + error)
+    console.error("getvehiclebyid error: " + error)
+    throw error
   }
 }
 
-module.exports = { getClassifications, getInventoryByClassificationId, getVehicleById };
+/***********************
+ * add a new classification to the database classification table
+ * ********************/
+async function addClassification(classification_name) {
+  try {
+    const sql = `
+      INSERT INTO public.classification (classification_name)
+      VALUES ($1)
+      RETURNING *;
+    `
+
+    const values = [classification_name]
+
+    const result = await pool.query(sql, values)
+    return result
+  } catch (error) {
+    console.error("Error in invModel.addClassification:", error)
+    throw error
+  }
+}
+
+
+/**************************
+ * add new inventory to a classsification in the database
+ ***************************/
+async function addVehicle(vehicleData) {
+  const sql = `
+    INSERT INTO public.inventory
+    (inv_make, inv_model, inv_year, inv_price, inv_miles, inv_color, inv_description, inv_image, inv_thumbnail, classification_id)
+    VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10)
+    RETURNING *;
+  `;
+
+  const values = [
+    vehicleData.inv_make,
+    vehicleData.inv_model,
+    vehicleData.inv_year,
+    vehicleData.inv_price,
+    vehicleData.inv_miles,
+    vehicleData.inv_color,
+    vehicleData.inv_description,
+    vehicleData.inv_image || '/images/vehicles/no-image.png',
+    vehicleData.inv_thumbnail || '/images/vehicles/no-image-tn.png',
+    vehicleData.classification_id,
+  ]
+
+  return await pool.query(sql, values);
+};
+
+
+module.exports = { getClassifications, getInventoryByClassificationId, getVehicleById, addClassification, addInventory: addVehicle, };
