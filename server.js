@@ -16,7 +16,7 @@ const baseController = require("./controllers/baseController")
 const inventoryRoute = require("./routes/inventoryRoute")
 const utilities = require("./utilities/")
 const parser = require("body-parser")
-
+const cookieParser = require("cookie-parser")
 
 //use public files statically
 app.use(express.static("public"));
@@ -46,6 +46,8 @@ app.use(function(req, res, next){
 app.use(parser.json())
 app.use(parser.urlencoded({extended: true})) // for parsing application/x-www-form-urlencoded
 
+//cookie parser middleware
+app.use(cookieParser())
 
 /* ***********************
  * View Engine and Templates

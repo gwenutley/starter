@@ -1,0 +1,19 @@
+<main>
+    <h1><%= title %></h1>
+
+    <% if (message) { %>
+        <div class="flash-message"><%= message %></div>
+    <% } %>
+
+    <% if (errors && errors.length> 0) { %>
+        <ul class="notice">
+            <% errors.forEach(error=> { %>
+                <li>
+                    <%= error.msg %>
+                </li>
+                <% }) %>
+        </ul>
+    <% } %>
+
+    <p>You're logged in</p>
+</main>

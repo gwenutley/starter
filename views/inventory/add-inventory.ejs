@@ -21,10 +21,10 @@
         <form action="/inv/add-inventory" method="POST" class="add-inventory-form">
 
             <label for="inv_make">Vehicle Make</label>
-            <input type="text" id="inv_make" name="inv_make" required value="<%= inv_make || '' %>">
+            <input type="text" id="inv_make" name="inv_make" placeholder="min of 3 characters" value="<%= inv_make || '' %>">
 
             <label for="inv_model">Vehicle Model</label>
-            <input type="text" id="inv_model" name="inv_model" required value="<%= inv_model || '' %>">
+            <input type="text" id="inv_model" name="inv_model" placeholder="min of 3 characters" value="<%= inv_model || '' %>">
 
             <label for="inv_description">Vehicle Description</label>
             <textarea id="inv_description" name="inv_description" required><%= inv_description || '' %></textarea>
@@ -36,18 +36,18 @@
             <input type="text" id="inv_thumbnail" name="inv_thumbnail" value="/images/vehicles/no-image-tn.png" required>
             
             <label for="inv_year">Vehicle Year</label>
-            <input type="number" id="inv_year" name="inv_year" min="1900" max="2099" required value="<%= inv_year || '' %>">
+            <input type="number" id="inv_year" name="inv_year" min="1900" max="2099" placeholder="4-digit year" value="<%= inv_year || '' %>">
 
             <label for="inv_price">Vehicle Price</label>
-            <input type="number" id="inv_price" name="inv_price" required value="<%= inv_price || '' %>">
+            <input type="number" id="inv_price" name="inv_price" placeholder="decimal or integer" value="<%= inv_price || '' %>">
 
             <label for="inv_miles">Vehicle Miles</label>
-            <input type="number" id="inv_miles" name="inv_miles" required value="<%= inv_miles || '' %>">
+            <input type="number" id="inv_miles" name="inv_miles" placeholder="digits only" required value="<%= inv_miles || '' %>">
 
             <label for="inv_color">Vehicle Color</label>
             <input type="text" id="inv_color" name="inv_color" required value="<%= inv_color || '' %>">
 
-            <label for="classification_id">Classification</label> 
+            <label for="classificationList">Classification</label> 
             <%- classificationSelect %>
 
             <button type="submit">Add Vehicle</button>

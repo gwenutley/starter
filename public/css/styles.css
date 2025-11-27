@@ -320,6 +320,83 @@ input:required:invalid {
   border-left: 5px solid red;
 }
 
+/*inventory management*/
+.inv-management {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  margin: 10px;
+}
+
+.btn {
+  padding: 5px;
+  font-size: 18px;
+}
+
+/*add classification inventory */
+.add-class-form,
+.add-inventory-form {
+  background-color: rgb(42, 152, 188);
+  padding: 20px;
+  margin: 2rem 1rem;
+  max-width: 800px
+}
+
+.add-class-form h1,
+.add-inventory-form h1 {
+  text-align: center;
+}
+
+.add-class-form form,
+.add-inventory-form {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  padding: 5px;
+  border: 1px solid white;
+}
+
+.add-class-form label {
+  padding: 8px;
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.add-inventory-form label {
+  display: block;
+  margin-top: 1rem;
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.add-class-form input,
+.add-inventory-form input,
+.add-inventory-form textarea,
+.add-inventory-form select {
+  font-size: 16px;
+  padding: .5rem;
+  border-radius: 2px;
+  margin-top: .3rem;
+  width: 100%;
+}
+
+.add-inventory-form textarea {
+  resize: vertical;
+  min-height: 100px;
+}
+
+.add-class-form button,
+.add-inventory-form button {
+  display: block;
+  width: 90%;
+  font-size: 16px;
+  padding: .5rem;
+  margin: 5px auto;
+  cursor: pointer;
+  border: none;
+  margin-top: 20px;
+}
+
 
 @media screen and (min-width: 500px) {
   /*ckeckered background*/
