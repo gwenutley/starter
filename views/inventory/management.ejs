@@ -1,12 +1,10 @@
-<main>
-    <h1><%= title %></h1>
-    <% if (message) { %>
-        <div class="flash-message">
-            <%= message %>
-        </div>
-    <% } %>
-    <div class="inv-management">
-        <a class="btn" href="/inv/add-classification">Add Classification</a>
-        <a class="btn" href="/inv/add-inventory">Add Inventory</a>
+<h1><%= title %></h1>
+<% if (message) { %>
+    <div class="flash-message">
+        <%= message %>
     </div>
-</main>
+<% } %>
+<div class="inv-management">
+    <a class="btn" href="/inv/add-classification">Add Classification</a>
+    <a class="btn" href="/inv/add-inventory">Add Inventory</a>
+</div>

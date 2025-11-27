@@ -1,56 +1,54 @@
-<main>
-    <h1><%= title %></h1>
+<h1><%= title %></h1>
 
-    <% if (message) { %>
-        <div class="flash-message">
-            <%= message %>
-        </div>
-    <% } %>
-
-    <% if (errors && errors.length> 0) { %>
-        <ul class="notice">
-            <% errors.forEach(error=> { %>
-                <li>
-                    <%= error.msg %>
-                </li>
-                <% }) %>
-        </ul>
-    <% } %>
-
-    <div class="add-inventory-form">
-        <form action="/inv/add-inventory" method="POST" class="add-inventory-form">
-
-            <label for="inv_make">Vehicle Make</label>
-            <input type="text" id="inv_make" name="inv_make" placeholder="min of 3 characters" value="<%= inv_make || '' %>">
-
-            <label for="inv_model">Vehicle Model</label>
-            <input type="text" id="inv_model" name="inv_model" placeholder="min of 3 characters" value="<%= inv_model || '' %>">
-
-            <label for="inv_description">Vehicle Description</label>
-            <textarea id="inv_description" name="inv_description" required><%= inv_description || '' %></textarea>
-
-            <label for="inv_image">Image Path</label>
-            <input type="text" id="inv_image" name="inv_image" value="/images/vehicles/no-image.png" required>
-
-            <label for="inv_thumbnail">Thumbnail Path</label>
-            <input type="text" id="inv_thumbnail" name="inv_thumbnail" value="/images/vehicles/no-image-tn.png" required>
-            
-            <label for="inv_year">Vehicle Year</label>
-            <input type="number" id="inv_year" name="inv_year" min="1900" max="2099" placeholder="4-digit year" value="<%= inv_year || '' %>">
-
-            <label for="inv_price">Vehicle Price</label>
-            <input type="number" id="inv_price" name="inv_price" placeholder="decimal or integer" value="<%= inv_price || '' %>">
-
-            <label for="inv_miles">Vehicle Miles</label>
-            <input type="number" id="inv_miles" name="inv_miles" placeholder="digits only" required value="<%= inv_miles || '' %>">
-
-            <label for="inv_color">Vehicle Color</label>
-            <input type="text" id="inv_color" name="inv_color" required value="<%= inv_color || '' %>">
-
-            <label for="classificationList">Classification</label> 
-            <%- classificationSelect %>
-
-            <button type="submit">Add Vehicle</button>
-        </form>
+<% if (message) { %>
+    <div class="flash-message">
+        <%= message %>
     </div>
-</main>
+<% } %>
+
+<% if (errors && errors.length> 0) { %>
+    <ul class="notice">
+        <% errors.forEach(error=> { %>
+            <li>
+                <%= error.msg %>
+            </li>
+            <% }) %>
+    </ul>
+<% } %>
+
+<div class="add-inventory-form">
+    <form action="/inv/add-inventory" method="POST" class="add-inventory-form">
+
+        <label for="inv_make">Vehicle Make</label>
+        <input type="text" id="inv_make" name="inv_make" placeholder="min of 3 characters" value="<%= inv_make || '' %>">
+
+        <label for="inv_model">Vehicle Model</label>
+        <input type="text" id="inv_model" name="inv_model" placeholder="min of 3 characters" value="<%= inv_model || '' %>">
+
+        <label for="inv_description">Vehicle Description</label>
+        <textarea id="inv_description" name="inv_description" required><%= inv_description || '' %></textarea>
+
+        <label for="inv_image">Image Path</label>
+        <input type="text" id="inv_image" name="inv_image" value="/images/vehicles/no-image.png" required>
+
+        <label for="inv_thumbnail">Thumbnail Path</label>
+        <input type="text" id="inv_thumbnail" name="inv_thumbnail" value="/images/vehicles/no-image-tn.png" required>
+        
+        <label for="inv_year">Vehicle Year</label>
+        <input type="number" id="inv_year" name="inv_year" min="1900" max="2099" placeholder="4-digit year" value="<%= inv_year || '' %>">
+
+        <label for="inv_price">Vehicle Price</label>
+        <input type="number" id="inv_price" name="inv_price" placeholder="decimal or integer" value="<%= inv_price || '' %>">
+
+        <label for="inv_miles">Vehicle Miles</label>
+        <input type="number" id="inv_miles" name="inv_miles" placeholder="digits only" required value="<%= inv_miles || '' %>">
+
+        <label for="inv_color">Vehicle Color</label>
+        <input type="text" id="inv_color" name="inv_color" required value="<%= inv_color || '' %>">
+
+        <label for="classificationList">Classification</label> 
+        <%- classificationSelect %>
+
+        <button type="submit">Add Vehicle</button>
+    </form>
+</div>
