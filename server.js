@@ -49,6 +49,8 @@ app.use(parser.urlencoded({extended: true})) // for parsing application/x-www-fo
 //cookie parser middleware
 app.use(cookieParser())
 
+app.use(utilities.checkJWTToken)
+
 /* ***********************
  * View Engine and Templates
  *************************/

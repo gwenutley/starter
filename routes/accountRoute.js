@@ -28,7 +28,7 @@ router.post(
 );
 
 //route to the account management view 
-router.get("/", utilities.handleErrors(accountController.buildAccountManagement));
+router.get("/", utilities.checkLogin, utilities.handleErrors(accountController.buildAccountManagement));
 
 
 //export router

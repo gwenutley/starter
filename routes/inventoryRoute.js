@@ -36,5 +36,8 @@ router.post(
     utilities.handleErrors(invController.addInventory)
 );
 
+//route to the inventory Javascript to display list of inventory
+router.get("/getInventory/:classification_id", utilities.handleErrors(invController.getInventoryJSON)) 
+
 module.exports = router;
 
