@@ -37,7 +37,14 @@ router.post(
 );
 
 //route to the inventory Javascript to display list of inventory
-router.get("/getInventory/:classification_id", utilities.handleErrors(invController.getInventoryJSON)) 
+router.get("/getInventory/:classification_id", utilities.handleErrors(invController.getInventoryJSON));
+
+//route to the modify link
+router.get("/edit/:inv_id", utilities.handleErrors(invController.editInventoryView));
+
+//route to update the inventory from the modify form
+router.post("/update/", validateInventory.addInventoryRules, validateInventory.checkUpdateData, utilities.handleErrors(invController.updateInventory));
+
 
 module.exports = router;
 
