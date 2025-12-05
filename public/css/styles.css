@@ -398,6 +398,119 @@ input:required:invalid {
 }
 
 
+/* upgrades page */
+.upgrade-grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  gap: 40px;
+  padding: 10px;
+
+}
+
+.upgrade-card {
+  border: 2px solid black;
+  border-radius: 5px;
+  overflow: hidden;
+  min-width: 150px;
+  max-width: 200px;
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+}
+
+.upgrade-img img {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+  display: block;
+}
+
+.upgrade-card h2 {
+  font-size: 22px;
+  margin: 10px 0;
+  padding: 10px;
+  border-top: 2px solid black;
+}
+
+.upgrade-button {
+  padding: 10px;
+}
+
+
+/* upgrade details page */
+.upgrade-details {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 10px;
+}
+
+h1 {
+  text-align: center;
+}
+
+.upgrade-details img {
+  width: 300px;
+}
+
+.upgrade-details p {
+  background-color: rgba(175, 175, 175, 0.984);
+  padding: 10px;
+}
+
+.upgrade-details p:nth-of-type(even) {
+  background-color: white;
+}
+
+.upgrade-details a {
+  text-align: center;
+}
+
+@media screen and (min-width: 500px) {
+
+  /*ckeckered background*/
+  body {
+    margin: 0;
+    background-image: url('/images/site/checkerboard.jpg');
+    background-repeat: repeat;
+    background-size: 400px 400px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  /*white background*/
+  #wrapper {
+    background-color: white;
+    padding: 2rem;
+    border-radius: 10px;
+    max-width: 850px;
+    width: 85%;
+    margin: 10px auto;
+    border: 6px solid rgb(103, 169, 190);
+  }
+
+  nav ul {
+    font-size: 20px;
+  }
+
+  /* upgrade details page */
+  .upgrade-details {
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+    padding: 10px;
+  }
+
+  .upgrade-details img {
+    max-width: 300px;
+  }
+
+}
+
+
 @media screen and (min-width: 500px) {
   /*ckeckered background*/
   body {

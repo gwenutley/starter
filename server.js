@@ -22,6 +22,15 @@ const cookieParser = require("cookie-parser")
 app.use(express.static("public"));
 
 /* ***********************
+ * View Engine and Templates
+ *************************/
+app.set("view engine", "ejs")
+app.set("views", "./views")
+app.use(expressLayouts)
+app.set("layout", "./layouts/layout") 
+
+
+/* ***********************
  * Middleware
  * ************************/
  app.use(session({
@@ -42,6 +51,9 @@ app.use(function(req, res, next){
   next()
 })
 
+//upgrade details pages
+app.use("/upgrades", require("./routes/upgradeRoute"));
+
 //make the body-parser available to application
 app.use(parser.json())
 app.use(parser.urlencoded({extended: true})) // for parsing application/x-www-form-urlencoded
@@ -51,13 +63,7 @@ app.use(cookieParser())
 
 app.use(utilities.checkJWTToken)
 
-/* ***********************
- * View Engine and Templates
- *************************/
-app.set("view engine", "ejs")
-app.set("views", "./views")
-app.use(expressLayouts)
-app.set("layout", "./layouts/layout") //not
+
 
 
 

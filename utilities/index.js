@@ -135,7 +135,55 @@ Util.checkJWTToken = (req, res, next) => {
     req.flash("notice", "Please log in.")
     return res.redirect("/account/login")
   }
- }
+}
+ 
+/******************************
+ * build the upgrades page
+ ***************************/
+Util.buildUpgradeGrid = async function (upgrades) {
+  let grid = '<div class="upgrade-grid">';
+    
+  upgrades.forEach(upgrade => { 
+    let price = "N/A";
+    if (upgrade.upgrade_price !== undefined && upgrade.upgrade_price !== null) {
+      price = Number(upgrade.upgrade_price).toFixed(2);
+    }
+  
+    grid += `
+      <div class="upgrade-card">
+        <div class="upgrade-img">
+          <img src="${upgrade.upgrade_image}" alt="${upgrade.upgrade_name}">
+        </div>
+        <h2>${upgrade.upgrade_name}</h2>
+        <p>Type: ${upgrade.upgrade_type}</p>
+        <p>Price: $${upgrade.upgrade_price}</p>
+        <a class="upgrade-button" href="/upgrades/detail/${upgrade.upgrade_id}">View Details</a>
+      </div>
+    `;
+  });
+
+  
+  grid += '</div>';
+  return grid;
+}
+
+/******************************
+ * Build the upgrades detial pages
+ *****************************/
+Util.buildUpgradeDetail = async function (upgrade) {
+  let details = '<div class="upgrade-details">';
+    details += `
+      <img src="${upgrade.upgrade_image}" alt="${upgrade.upgrade_name}"><br>
+      <div class="upgrade-detail-info">
+        <p>Type: ${upgrade.upgrade_type}</p>
+        <p>Description: ${upgrade.upgrade_description}</p>
+        <p>Price: $${upgrade.upgrade_price}</p>
+        <a href="/upgrades/type/${upgrade.upgrade_type_id}">Back to Upgrades</a>
+      </div>
+    `;
+  details += '</div>';
+  return details;
+};
 
 
 /* ****************************************
