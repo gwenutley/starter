@@ -21,6 +21,17 @@ const cookieParser = require("cookie-parser")
 //use public files statically
 app.use(express.static("public"));
 
+
+//cookie parser and jwt middleware
+//check loogedin and account data
+app.use(cookieParser())
+app.use(utilities.checkJWTToken)
+app.use((req, res, next) => {
+  res.locals.loggedin = res.locals.loggedin || 0
+  res.locals.accountData = res.locals.accountData || {}
+  next()
+})
+
 /* ***********************
  * View Engine and Templates
  *************************/
@@ -28,6 +39,7 @@ app.set("view engine", "ejs")
 app.set("views", "./views")
 app.use(expressLayouts)
 app.set("layout", "./layouts/layout") 
+
 
 
 /* ***********************
@@ -56,12 +68,7 @@ app.use("/upgrades", require("./routes/upgradeRoute"));
 
 //make the body-parser available to application
 app.use(parser.json())
-app.use(parser.urlencoded({extended: true})) // for parsing application/x-www-form-urlencoded
-
-//cookie parser middleware
-app.use(cookieParser())
-
-app.use(utilities.checkJWTToken)
+app.use(parser.urlencoded({extended: true})) 
 
 
 

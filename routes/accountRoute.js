@@ -30,6 +30,17 @@ router.post(
 //route to the account management view 
 router.get("/", utilities.checkLogin, utilities.handleErrors(accountController.buildAccountManagement));
 
+//logout route
+router.get("/logout", utilities.handleErrors(accountController.logout));
+
+//account management update view
+router.get("/update/:id", utilities.checkLogin, utilities.handleErrors(accountController.buildUpdateAccount));
+
+//route to the update account info
+router.post("/update/:id", validate.updateAccountRules(), validate.checkUpdateData, utilities.handleErrors(accountController.updateAccountInfo));
+
+//route to the change password
+router.post("/update-password/:id", validate.updatePasswordRules(), validate.checkPasswordData, utilities.handleErrors(accountController.updateAccountPassword));
 
 //export router
 module.exports = router;

@@ -4,6 +4,7 @@ const accountModel = require("../models/account-model")
 const bcrypt = require("bcryptjs")
 const jwt = require("jsonwebtoken")
 require("dotenv").config()
+const { validationResult } = require("express-validator");
 
 /* ****************************************
 *  Deliver login view
@@ -119,23 +120,136 @@ async function accountLogin(req, res) {
 }
 
 
-
-
-
-
 /******************************
  * Process funcation return management view
  ******************************/
 async function buildAccountManagement(req, res) {
   let nav = await utilities.getNav();
+  const accountData = res.locals.accountData;
+
+  if (!accountData) {
+    req.flash("notice", "Please log in to view your account");
+    return res.redirect("/account/login");
+  }
 
   res.render("account/management", {
     title: "Account Management",
     nav,
     message: req.flash("notice"),
     errors: [],
+    accountData,
+  });
+}
+
+/**********************
+ * create the update account view
+ ************************/
+async function buildUpdateAccount(req, res) {
+  let nav = await utilities.getNav();
+  const accountData = res.locals.accountData;
+
+  if (!accountData) {
+    req.flash("notice", "Please login to update account");
+    return res.redirect("/account/login");
+
+  }
+
+  res.render("account/update", {
+    title: "Update Account",
+    nav,
+    message: req.flash("notice"),
+    errors: [],
+    accountData,
   });
 }
 
 
-module.exports = { buildLogin, buildRegister, registerAccount, accountLogin, buildAccountManagement }
+/***************************
+ * process the updated account info
+ ************************/
+async function updateAccountInfo(req, res) {
+  let nav = await utilities.getNav();
+  const { account_firstname, account_lastname, account_email } = req.body;
+  const account_id = parseInt(req.params.id);
+
+  const errors = validationResult(req);
+  if (!errors.isEmpty()) {
+    return res.status(400).render("account/update", {
+      title: "Update Account",
+      nav,
+      message: "",
+      errors: errors.array(),
+      accountData: { account_firstname, account_lastname, account_email, account_id },
+    });
+  }
+
+  const result = await accountModel.updateAccount(account_id, account_firstname, account_lastname, account_email);
+
+  if (result) {
+    req.flash("notice", "Account info updated successfully");
+    return res.redirect("/account/");
+  } else {
+    req.flash("notice", "Failed to update account. Try again");
+    return res.status(500).render("account/update", {
+      title: "update Account",
+      nav,
+      message: "",
+      errors: [],
+      accountData: { account_firstname, account_lastname, account_email, account_id },
+    });
+  }
+}
+
+/************************
+ * process the password update
+ **************************/
+async function updateAccountPassword(req, res) {
+  let nav = await utilities.getNav();
+  const { account_password } = req.body;
+  const account_id = parseInt(req.params.id);
+
+  const errors = validationResult(req);
+  if (!errors.isEmpty()) {
+    return res.status(400).render("account/update", {
+      title: "Update Account",
+      nav,
+      message: "",
+      errors: errors.array(),
+      accountData: { account_id },
+    });
+  }
+
+  const hashedPassword = await bcrypt.hash(account_password, 12);
+  const result = await accountModel.updatePassword(account_id, hashedPassword);
+
+  if (result) {
+    req.flash("notice", "Password updated successfully");
+    return res.redirect("/account/");
+  } else {
+    req.flash("notice", "Failed to update password. Try again");
+    return res.status(500).render("account/update", {
+      title: "update Account",
+      nav,
+      message: "",
+      errors: [],
+      accountData: { account_id },
+    });
+  }
+}
+
+
+
+
+
+
+/******************************
+ *  Process Logout
+ ***********************/
+async function logout(req, res) {
+  res.clearCookie("jwt")
+  req.flash("notice", "You have been logged out.")
+  return res.redirect("/")
+}
+
+
+module.exports = { buildLogin, buildRegister, registerAccount, accountLogin, buildAccountManagement, logout, buildUpdateAccount, updateAccountInfo, updateAccountPassword }

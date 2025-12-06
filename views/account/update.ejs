@@ -1,0 +1,52 @@
+<h1>
+    <%= title %>
+</h1>
+
+<% if (typeof message !== 'undefined' && message.length > 0) { %>
+    <div class="flash-message"><%= message %></div>
+<% } %>
+
+<% if (errors && errors.length> 0) { %>
+    <ul class="notice">
+        <% errors.forEach(error=> { %>
+            <li><%= error.msg %></li>
+        <% }) %>
+    </ul>
+<% } %>
+
+<% if (accountData) { %>
+    <section class="account-update">
+        <h2>Account Update</h2>
+        <form action="/account/update/<%= accountData.account_id %>" method="POST">
+            <input type="hidden" name="account_id" value="<%= accountData.account_id %>">
+            
+            <label for="account_firstname">First Name</label>
+            <input type="text" id="account_firstname" name="account_firstname" value="<%= accountData.account_firstname %>" required><br>
+
+            <label for="account_lastname">Last Name</label>
+            <input type="text" id="account_lastname" name="account_lastname" value="<%= accountData.account_lastname %>" required>
+
+            <label for="account_email">Email</label>
+            <input type="hidden" name="current_email" value="<%= accountData.account_email %>">
+            <input type="email" id="account_email" name="account_email" value="<%= accountData.account_email %>" required>
+
+            <button type="submit">Update Account</button>
+        </form>
+    </section>
+
+    <section class="account-update">
+        <h2>Change Password</h2>
+        <form action="/account/update-password/<%= accountData.account_id %>" method="POST">
+            <input type="hidden" name="account_id" value="<%= accountData.account_id %>">
+            
+            <p>Password must be at least 12 characters, include uppercase and lowercase letters, a number, and a special character.</p>
+            <label for="account_password">New Password</label>
+            <input type="password" id="account_password" name="account_password" required>
+
+            <label for="confirm_password">Confirm Password</label>
+            <input type="password" id="confirm_password" name="confirm_password" required>
+
+            <button type="submit">Update Password</button>
+        </form>
+    </section>
+<% } %>

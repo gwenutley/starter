@@ -261,7 +261,8 @@ ul#inv-display li img{
 
 
 /* form section */
-.form-container {
+.form-container,
+.account-update {
   background-color: rgb(42, 152, 188);
   padding: 20px;
   border-radius: 2px;
@@ -271,13 +272,20 @@ ul#inv-display li img{
   margin: 30px auto;
 }
 
-.account-form label {
+.account-update h2 {
+  padding: 10px;
+  padding-bottom: 20px;
+}
+
+.account-form label,
+.account-update label {
   color: black;
   margin: 20px auto 10px auto;
   font-size: 18px;
 }
 
-.account-form input {
+.account-form input,
+.account-update input {
   width: 85%;
   padding: 16px;
   border: none;
@@ -292,7 +300,8 @@ ul#inv-display li img{
 
 }
 
-.account-form button {
+.account-form button,
+.account-update button {
   width: auto;
   padding: 12px;
   background: white;
@@ -302,7 +311,8 @@ ul#inv-display li img{
   cursor: pointer;
 }
 
-.account-form button:hover {
+.account-form button:hover,
+.account-update button:hover {
   background: #0b3a86;
 }
 

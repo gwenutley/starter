@@ -136,6 +136,21 @@ Util.checkJWTToken = (req, res, next) => {
     return res.redirect("/account/login")
   }
 }
+
+
+/*****************************
+ * check if admin or employee
+ **************************/
+Util.checkAdminEmployee = (req, res, next) => {
+  if (res.locals.accountData) {
+    const accountType = res.locals.accountData.account_type;
+    if (accountType === "Admin" || accountType === "Employee") {
+      return next();
+    }
+  }
+  req.flash("notice", "Access denied, please login as a manager or employee");
+  return res.redirect("/account/login");
+}
  
 /******************************
  * build the upgrades page

@@ -41,5 +41,36 @@ async function getAccountByEmail (account_email) {
   }
 }
 
+/***********************************
+ * return my updated account
+ **************************/
+async function updateAccount(account_id, firstName, lastName, email) {
+  const sql = `UPDATE public.account
+    SET account_firstname = $1,
+      account_lastname = $2,
+      account_email = $3
+    WHERE account_id = $4`;
+  const values = [firstName, lastName, email, account_id];
+  const result = await pool.query(sql, values);
+  return result.rowCount
+}
 
-module.exports = { registerAccount, checkExistingEmail, getAccountByEmail }
+/***************************
+ * return updated password info
+ **************************/
+async function updatePassword(account_id, hashedPassword) {
+  try {
+    const sql = `UPDATE public.account
+                 SET account_password = $1
+                 WHERE account_id = $2`;
+    const values = [hashedPassword, account_id];
+    const result = await pool.query(sql, values);
+    return result.rowCount;
+  } catch (error) {
+    console.error("Error updating password: ", error.message);
+    return 0;
+  }
+}
+
+
+module.exports = { registerAccount, checkExistingEmail, getAccountByEmail, updateAccount, updatePassword }
